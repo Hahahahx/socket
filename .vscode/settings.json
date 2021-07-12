@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "stat.h": "c",
+        "fcntl.h": "c",
+        "windows.h": "c"
+    }
+}
