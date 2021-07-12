@@ -186,6 +186,7 @@ int main(int argc, char const *argv[])
         // 接收到信息
         if ((recvfrom(sockfd, text, 128, 0, (struct sockaddr *)&clientaddr, &addrlen)))
         {
+            printf("recv msg...");
             // 判断客户端传过来的数据是什么
             if (text[1] == 1) // 建立连接，传输文件
             {

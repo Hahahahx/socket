@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
 {
     if (argc < 3)
     {
-        fprintf(stderr, "Usage: %s <server_ip!> <port!>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <server_ip!> <filename!>\n", argv[0]);
         exit(1);
     }
 
@@ -80,18 +80,18 @@ int main(int argc, char const *argv[])
     // 填充服务器网络信息结构体
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_addr.s_addr = inet_addr(argv[1]);
-    serveraddr.sin_port = htons(atoi(argv[2]));
+    serveraddr.sin_port = htons(atoi(9090));
 
-    do_download(sockfd, serveraddr);
+    do_download(sockfd, serveraddr, argv[2]);
 
     return 0;
 }
 
-int do_download(int sockfd, struct sockaddr_in serveraddr)
+int do_download(int sockfd, struct sockaddr_in serveraddr, char *filename)
 {
-    char filename[128] = "";
-    printf("请输入要下载的文件名：");
-    scanf("%s", filename);
+    // char filename[128] = "";
+    // printf("请输入要下载的文件名：");
+    // scanf("%s", filename);
 
     // 给服务器发送消息，告知服务器执行下载操作
     unsigned char text[1024] = "";
@@ -109,6 +109,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
 
     // 构建读写请求，给服务器发送的tftp指令并发送给服务器,例如：01test.txt0octet0
     text_len = sprintf(text, "%c%c%s%c%s%c", 0, 1, filename, 0, "octet", 0);
+    printf("send msg %s", text);
     if (sendto(sockfd, text, text_len, 0, (struct sockaddr *)&serveraddr, addrlen) < 0)
     {
         perror("fail to sendto ");
@@ -124,7 +125,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
             exit(1);
         }
 
-        // printf("操作码：%d，块编号：%u\n",text[1],ntohs(*(unsigned short *)(text +2)));
+        printf("操作码：%d，块编号：%u\n", text[1], ntohs(*(unsigned short *)(text + 2)));
         // printf("数据：%s\n",text+4);
 
         // 判断操作码执行相应的处理
@@ -187,7 +188,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
                     }
 
                     printf("文件下载完毕\n");
-                    return ;
+                    return;
                 }
             }
         }
