@@ -190,7 +190,7 @@ int main(int argc, char const *argv[])
     {
 
         // 接收到信息
-        if ((recvfrom(sockfd, text, 1024, 0, (struct sockaddr *)&clientaddr, &addrlen)))
+        if ((recvfrom(sockfd, text, 512, 0, (struct sockaddr *)&clientaddr, &addrlen)))
         {
             printf("recv msg...\n");
             // 判断客户端传过来的数据是什么
