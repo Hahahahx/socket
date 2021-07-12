@@ -193,14 +193,16 @@ int main(int argc, char const *argv[])
         if ((recvfrom(sockfd, text, 512, 0, (struct sockaddr *)&clientaddr, &addrlen)))
         {
             printf("recv msg...\n");
-            // 判断客户端传过来的数据是什么
-            if (text[1] == 1) // 建立连接，传输文件
-            {
-                char i;
-                unsigned char value[1024] = "";
 
-                sscanf(text, "%c%c%s%c%s%c", &i, &i, value);
-                puts(value);
+            unsigned short i;
+            unsigned char value[1024] = "";
+
+            sscanf(text, "%u%s%c%s%c", &i, value);
+            puts(value);
+
+            // 判断客户端传过来的数据是什么
+            if (i == 1) // 建立连接，传输文件
+            {
                 printf("open file.. %d", text[1]);
                 if ((fd = open(value, O_RDONLY)) < 0)
                 {
