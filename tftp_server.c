@@ -196,13 +196,13 @@ int main(int argc, char const *argv[])
             // 判断客户端传过来的数据是什么
             if (text[1] == 1) // 建立连接，传输文件
             {
-                printf("open file.. %d", text[1]);
                 char i;
                 unsigned char value[1024] = "";
 
                 sscanf(text, "%c%c%s%c%s%c", &i, &i, value);
                 puts(value);
-                if ((fd = open(text[2], O_RDONLY)) < 0)
+                printf("open file.. %d", text[1]);
+                if ((fd = open(value, O_RDONLY)) < 0)
                 {
                     buf_len = sprintf(buf, "%c%c%s%c%s%c", 0, 5, 404, "not found file", 0);
                     sendto(sockfd, buf, buf_len, 0, (struct sockaddr *)&clientaddr, addrlen);
