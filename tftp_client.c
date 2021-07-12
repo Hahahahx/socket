@@ -80,7 +80,7 @@ int main(int argc, char const *argv[])
     // 填充服务器网络信息结构体
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_addr.s_addr = inet_addr(argv[1]);
-    serveraddr.sin_port = htons(atoi(9090));
+    serveraddr.sin_port = htons(9090);
 
     do_download(sockfd, serveraddr, argv[2]);
 
