@@ -139,6 +139,7 @@ struct sockaddr_in clientaddr;
 
 int main(int argc, char const *argv[])
 {
+    printf("listen running...\n");
 #if _WIN32
     WSADATA ws;
     //增加动态库引用，并加载进来（一定要在socket函数前调用，需要释放）。
@@ -160,7 +161,7 @@ int main(int argc, char const *argv[])
     serveraddr.sin_addr.s_addr = inet_addr(ip);
     serveraddr.sin_port = htons(9090);
 
-    printf("launch at %s:9090", ip);
+    printf("launch at %s:9090\n", ip);
 
 #if __linux__
     socklen_t addrlen = sizeof(clientaddr);
