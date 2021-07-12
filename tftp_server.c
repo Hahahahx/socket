@@ -161,6 +161,12 @@ int main(int argc, char const *argv[])
     serveraddr.sin_addr.s_addr = inet_addr(ip);
     serveraddr.sin_port = htons(9090);
 
+    // 将网络信息结构体与套接字绑定
+    if (bind(sockfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) == -1)
+    {
+        perror("fail to bind ");
+        exit(1);
+    }
     printf("launch at %s:9090\n", ip);
 
 #if __linux__
