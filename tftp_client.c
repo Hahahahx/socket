@@ -111,7 +111,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr, char *filename)
     text_len = sprintf(text, "%c%c%s%c%s%c", 0, 1, filename, 0, "octet", 0);
 
     printf("send msg ");
-    printf("get text: %s", text);
+    printf("get text:%c%c%s",text[0],text[1], text);
     puts(text);
     if (sendto(sockfd, text, text_len, 0, (struct sockaddr *)&serveraddr, addrlen) < 0)
     {
