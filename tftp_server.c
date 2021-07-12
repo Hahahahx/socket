@@ -32,6 +32,7 @@
 
 // 编译时应该加上-lwsock32
 #endif
+#define MAX_PATH 260
 
 #if __linux__
 
