@@ -153,6 +153,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
                 {
                     num = ntohs(*(unsigned short *)(text + 2));
                     // issue：看不懂这个write用法
+                    // +4 为了不写入前面两个块编号和操作码 -4 也是 516 - 4 = 512
                     if (write(fd, text + 4, bytes - 4) < 0)
                     {
                         perror("fail to write");

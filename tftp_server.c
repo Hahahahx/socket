@@ -11,6 +11,9 @@
 #include <sys/stat.h>
 #include <unistd.h> // close
 #include <fcntl.h>  // close
+#include <ifaddrs.h>    // ifaddr
+#include <netdb.h>      // gethostname
+
 
 #elif _WIN32
 #include <WinSock2.h>
