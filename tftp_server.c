@@ -197,7 +197,7 @@ int main(int argc, char const *argv[])
             if (text[1] == 1) // 建立连接，传输文件
             {
                 printf("open file.. ");
-                // puts(text[2]);
+                puts(text);
                 if ((fd = open(text[2], O_RDONLY)) < 0)
                 {
                     buf_len = sprintf(buf, "%c%c%s%c%s%c", 0, 5, 404, "not found file", 0);
