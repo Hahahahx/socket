@@ -108,8 +108,8 @@ int do_download(int sockfd, struct sockaddr_in serveraddr, char *filename)
     ssize_t bytes;
 
     // 构建读写请求，给服务器发送的tftp指令并发送给服务器,例如：01test.txt0octet0
-    text_len = sprintf(text, "%c%c%s%c%s%c", 0, 1, filename, 0, "octet", 0);
-    printf("send msg %s", text);
+    text_len = sprintf(text, "%c%c%s%c%s%c", 0, 1, filename, 0, "netascii", 0);
+    printf("send msg %s\n", text);
     if (sendto(sockfd, text, text_len, 0, (struct sockaddr *)&serveraddr, addrlen) < 0)
     {
         perror("fail to sendto ");
