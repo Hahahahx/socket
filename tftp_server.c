@@ -160,6 +160,8 @@ int main(int argc, char const *argv[])
     serveraddr.sin_addr.s_addr = inet_addr(ip);
     serveraddr.sin_port = htons(9090);
 
+    printf("launch at %s:9090", ip);
+
 #if __linux__
     socklen_t addrlen = sizeof(clientaddr);
 #elif _WIN32
