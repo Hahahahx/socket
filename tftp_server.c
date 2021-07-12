@@ -197,7 +197,7 @@ int main(int argc, char const *argv[])
             unsigned short i;
             unsigned char value[1024] = "";
 
-            sscanf(text, "%u%s%c%s%c", &i, value);
+            sscanf(text, "%d%d%s%c%s%c", &i,&i, value);
             puts(value);
 
             // 判断客户端传过来的数据是什么
