@@ -196,7 +196,7 @@ int main(int argc, char const *argv[])
             // 判断客户端传过来的数据是什么
             if (text[1] == 1) // 建立连接，传输文件
             {
-                printf("open file.. ");
+                printf("open file.. %d", text[1]);
                 puts(text);
                 if ((fd = open(text[2], O_RDONLY)) < 0)
                 {
