@@ -151,6 +151,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
             {
                 if (likely(bytes == 516)) // 2（操作码）+ 2（快编号）+ 512（数据）
                 {
+                    printf("下载文件..");
                     num = ntohs(*(unsigned short *)(text + 2));
                     // issue：看不懂这个write用法
                     // +4 为了不写入前面两个块编号和操作码 -4 也是 516 - 4 = 512
@@ -171,6 +172,7 @@ int do_download(int sockfd, struct sockaddr_in serveraddr)
                 // 当最后一个数据接收完毕后，写入文件后退出函数
                 else if (bytes < 516)
                 {
+                    printf("最后一块");
                     if (write(fd, text + 4, bytes - 4) < 0)
                     {
                         perror("fail to write");

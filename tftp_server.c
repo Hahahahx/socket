@@ -9,11 +9,10 @@
 #include <netinet/in.h> // sockaddr_in
 #include <arpa/inet.h>  // htons inet_addr
 #include <sys/stat.h>
-#include <unistd.h> // close
-#include <fcntl.h>  // close
-#include <ifaddrs.h>    // ifaddr
-#include <netdb.h>      // gethostname
-
+#include <unistd.h>  // close
+#include <fcntl.h>   // close
+#include <ifaddrs.h> // ifaddr
+#include <netdb.h>   // gethostname
 
 #elif _WIN32
 #include <WinSock2.h>
@@ -187,6 +186,7 @@ int main(int argc, char const *argv[])
             // 判断客户端传过来的数据是什么
             if (text[1] == 1) // 建立连接，传输文件
             {
+                printf("open file %s\n", text);
                 if ((fd = open(text, O_RDONLY)) < 0)
                 {
                     buf_len = sprintf(buf, "%c%c%s%c%s%c", 0, 5, 404, "not found file", 0);
@@ -198,6 +198,7 @@ int main(int argc, char const *argv[])
                 ack++;
                 buf_len = sprintf(buf, "%c%c%u%s%c%s", 0, 3, ack, text);
                 sendto(sockfd, buf, buf_len, 0, (struct sockaddr *)&clientaddr, addrlen);
+                printf("send to block for %d", ack);
                 continue;
             }
 
@@ -208,6 +209,7 @@ int main(int argc, char const *argv[])
                 ack++;
                 buf_len = sprintf(buf, "%c%c%u%s%c%s", 0, 3, ack, text);
                 sendto(sockfd, buf, buf_len, 0, (struct sockaddr *)&clientaddr, addrlen);
+                printf("send to block for %d", ack);
                 continue;
             }
         }
