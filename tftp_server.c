@@ -197,8 +197,8 @@ int main(int argc, char const *argv[])
             unsigned short i;
             unsigned char value[1024] = "";
 
-            sscanf(text, "%d%d%s%c%s%c", &i,&i, value);
-            puts(value);
+            // sscanf(text, "%d%d%s%c%s%c", &i,&i, value);
+            puts(text);
 
             // 判断客户端传过来的数据是什么
             if (i == 1) // 建立连接，传输文件
