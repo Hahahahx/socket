@@ -194,7 +194,9 @@ int main(int argc, char const *argv[])
         {
             printf("recv msg...\n");
 
-            unsigned char one ;
+            puts(text)
+
+            unsigned short one ;
             unsigned char two ;
             unsigned char three;
             unsigned char four ;
@@ -202,8 +204,7 @@ int main(int argc, char const *argv[])
             unsigned char mode[1024] = "";
 
 
-            sscanf(text, "%d%d%s%c%s%c", one, two, filename, four, mode, four);
-            printf( "%d%d%s%c%s%c", one, two, filename, four, mode, four);
+            sscanf(text, "%d%s%d%s%d",one, filename, two, mode, three);
 
             // unsigned short i;
             // unsigned char value[1024] = "";
