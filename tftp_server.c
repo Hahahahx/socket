@@ -194,17 +194,28 @@ int main(int argc, char const *argv[])
         {
             printf("recv msg...\n");
 
-            unsigned short i;
-            unsigned char value[1024] = "";
+            unsigned char one ;
+            unsigned char two ;
+            unsigned char three;
+            unsigned char four ;
+            unsigned char filename[1024] = "";
+            unsigned char mode[1024] = "";
 
-            // sscanf(text, "%d%d%s%c%s%c", &i,&i, value);
-            puts(text);
+
+            sscanf(text, "%d%d%s%c%s%c", one, two, filename, four, mode, four);
+            printf( "%d%d%s%c%s%c", one, two, filename, four, mode, four);
+
+            // unsigned short i;
+            // unsigned char value[1024] = "";
+
+            // // sscanf(text, "%d%d%s%c%s%c", &i,&i, value);
+            // puts(text);
 
             // 判断客户端传过来的数据是什么
-            if (i == 1) // 建立连接，传输文件
+            if ( text[1] == 1) // 建立连接，传输文件
             {
                 printf("open file.. %d", text[1]);
-                if ((fd = open(value, O_RDONLY)) < 0)
+                if ((fd = open(filename, O_RDONLY)) < 0)
                 {
                     buf_len = sprintf(buf, "%c%c%s%c%s%c", 0, 5, 404, "not found file", 0);
                     sendto(sockfd, buf, buf_len, 0, (struct sockaddr *)&clientaddr, addrlen);
