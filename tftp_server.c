@@ -194,17 +194,22 @@ int main(int argc, char const *argv[])
         {
             printf("recv msg...\n");
 
-            puts(text)
+            puts(text);
 
-            unsigned short one ;
-            unsigned char two ;
-            unsigned char three;
-            unsigned char four ;
+            unsigned int one;
+            unsigned int two ;
+            unsigned int three;
+            unsigned int four ;
             unsigned char filename[1024] = "";
             unsigned char mode[1024] = "";
 
+            printf("\n%c\n",text[0]);
+            printf("\n%c\n",text[1]);
 
-            sscanf(text, "%d%s%d%s%d",one, filename, two, mode, three);
+
+            sscanf(text, "%d%s[0]%s%d",&one, filename, mode, &three);
+            printf("______________________________");
+            printf( "[[[[[[%d%s%d%s%d",one, filename, mode, three);
 
             // unsigned short i;
             // unsigned char value[1024] = "";
@@ -213,7 +218,7 @@ int main(int argc, char const *argv[])
             // puts(text);
 
             // 判断客户端传过来的数据是什么
-            if ( text[1] == 1) // 建立连接，传输文件
+            if ( text[0] == 1) // 建立连接，传输文件
             {
                 printf("open file.. %d", text[1]);
                 if ((fd = open(filename, O_RDONLY)) < 0)
